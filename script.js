@@ -126,4 +126,77 @@ function launchSurprise() {
     }
     
     // Crear corazones adicionales
-    for (let i = 0
+    for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.style.position = 'fixed';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.top = '-10px';
+        heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+        heart.style.zIndex = '10000';
+        heart.style.animation = `fall ${Math.random() * 4 + 2}s linear`;
+        heart.innerHTML = '❤️';
+        document.body.appendChild(heart);
+        
+        setTimeout(() => heart.remove(), 5000);
+    }
+    
+    // Mostrar mensaje
+    const messages = [
+        '¡ELLA DIJO QUE SÍ! ❤️',
+        '2 DE FEBRERO 2025 ✨',
+        'MI ENAMORADA 💕',
+        'EL SÍ MÁS BONITO 🌹',
+        'PARA SIEMPRE 💑',
+        'GRACIAS POR DECIR QUE SÍ 🥰',
+        'TE AMO NATALY ❤️',
+        'MI NATALY CAMILA 💖'
+    ];
+    
+    const msg = document.createElement('div');
+    msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+    msg.style.position = 'fixed';
+    msg.style.top = '50%';
+    msg.style.left = '50%';
+    msg.style.transform = 'translate(-50%, -50%)';
+    msg.style.fontSize = '3rem';
+    msg.style.fontFamily = "'Dancing Script', cursive";
+    msg.style.color = '#ff4d6d';
+    msg.style.textShadow = '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,105,180,0.5)';
+    msg.style.zIndex = '10001';
+    msg.style.animation = 'fadeInOut 3s ease';
+    msg.style.textAlign = 'center';
+    msg.style.fontWeight = 'bold';
+    msg.style.background = 'rgba(255, 255, 255, 0.3)';
+    msg.style.padding = '20px 40px';
+    msg.style.borderRadius = '80px';
+    msg.style.backdropFilter = 'blur(5px)';
+    msg.style.border = '2px solid white';
+    document.body.appendChild(msg);
+    
+    setTimeout(() => msg.remove(), 3000);
+}
+
+// Crear estilo para animaciones (si no existe)
+if (!document.getElementById('custom-animations')) {
+    const style = document.createElement('style');
+    style.id = 'custom-animations';
+    style.textContent = `
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Inicializar contador al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    updateCounter();
+});
