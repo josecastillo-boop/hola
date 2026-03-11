@@ -44,11 +44,15 @@ document.querySelectorAll('.animate-on-scroll').forEach(el => {
     animateOnScroll.observe(el);
 });
 
-// Función para abrir cartas
-// Función para abrir cartas
+// Función para voltear elementos (galería y cartas)
+function flipElement(element) {
+    element.classList.toggle('flipped');
+}
+
+// Función para abrir cartas (respaldo)
 function openLetter(id) {
     const letters = [
-        'Nataly Camila, ese 2 de febrero de 2025 junté valor y te pedí que fueras mi enamorada. Cuando dijiste que SÍ, mi corazón explotó de felicidad. Ese día comenzó la historia más hermosa de mi vida. Gracias por hacerme la persona más feliz del mundo.',
+        'Nataly Camila, ese 2 de febrero de 2025 junté valor y te pedí que fueras mi enamorada. Cuando dijiste que SÍ, mi corazón explotó de felicidad. Gracias por hacerme el hombre más feliz del mundo.',
         
         '22 de julio, el día más especial porque naciste tú. Feliz cumpleaños, mi amor. Gracias por existir y por haberle dicho que sí a este enamorado que te ama con todo su corazón.',
         
@@ -95,11 +99,14 @@ function launchSurprise() {
     
     // Mostrar mensaje
     const messages = [
-        'TE AMO NATALY ❤️',
+        '¡ELLA DIJO QUE SÍ! ❤️',
         '2 DE FEBRERO 2025 ✨',
         'MI ENAMORADA 💕',
-        'LA DUEÑA DE MI CORAZÓN 🌹',
-        'PARA SIEMPRE 💑'
+        'EL SÍ MÁS BONITO 🌹',
+        'PARA SIEMPRE 💑',
+        'GRACIAS POR DECIR QUE SÍ 🥰',
+        'TE AMO NATALY ❤️',
+        'MI NATALY CAMILA 💖'
     ];
     
     const msg = document.createElement('div');
@@ -115,6 +122,12 @@ function launchSurprise() {
     msg.style.zIndex = '10001';
     msg.style.animation = 'fadeInOut 3s ease';
     msg.style.textAlign = 'center';
+    msg.style.fontWeight = 'bold';
+    msg.style.background = 'rgba(255, 255, 255, 0.3)';
+    msg.style.padding = '20px 40px';
+    msg.style.borderRadius = '80px';
+    msg.style.backdropFilter = 'blur(5px)';
+    msg.style.border = '2px solid white';
     document.body.appendChild(msg);
     
     setTimeout(() => msg.remove(), 3000);
@@ -139,3 +152,8 @@ if (!document.getElementById('custom-animations')) {
     `;
     document.head.appendChild(style);
 }
+
+// Inicializar contador al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    updateCounter();
+});
