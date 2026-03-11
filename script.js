@@ -1,29 +1,22 @@
-// ===== CONTADOR DE TIEMPO =====
+// ===== CONTADOR DE TIEMPO - CORREGIDO =====
 function updateCounter() {
-    // Fecha exacta: 2 de febrero de 2025 a las 00:00 horas
-    const startDate = new Date('2025-02-02T00:00:00');
+    // IMPORTANTE: CAMBIA ESTA FECHA POR LA REAL
+    // Si fue el 2 de febrero de 2024, pon: new Date('2024-02-02T00:00:00')
+    // Si fue el 2 de febrero de 2025, pon: new Date('2025-02-02T00:00:00')
+    const startDate = new Date('2025-02-02T00:00:00'); // ¡CAMBIA EL AÑO AQUÍ!
     const now = new Date();
     const diff = now - startDate;
     
-    // Si la diferencia es positiva (ya pasó la fecha), calcula
-    // Si es negativa (aún no llega), muestra 0
-    if (diff < 0) {
-        document.getElementById('days').textContent = '0';
-        document.getElementById('hours').textContent = '0';
-        document.getElementById('minutes').textContent = '0';
-        document.getElementById('seconds').textContent = '0';
-        return;
-    }
-    
+    // Calcular días, horas, minutos, segundos
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
     
-    document.getElementById('days').textContent = days;
-    document.getElementById('hours').textContent = hours;
-    document.getElementById('minutes').textContent = minutes;
-    document.getElementById('seconds').textContent = seconds;
+    document.getElementById('days').textContent = days >= 0 ? days : 0;
+    document.getElementById('hours').textContent = hours >= 0 ? hours : 0;
+    document.getElementById('minutes').textContent = minutes >= 0 ? minutes : 0;
+    document.getElementById('seconds').textContent = seconds >= 0 ? seconds : 0;
 }
 
 setInterval(updateCounter, 1000);
@@ -50,7 +43,7 @@ function flipElement(element) {
     element.classList.toggle('flipped');
 }
 
-// ===== FUNCIÓN PARA FRASES MOTIVADORAS (CORREGIDA) =====
+// ===== FUNCIÓN PARA FRASES MOTIVADORAS (AHORA SÍ FUNCIONA) =====
 function showPhrase(id) {
     // Array de frases hermosas
     const phrases = [
@@ -71,47 +64,15 @@ function showPhrase(id) {
         '🎵 "Nuestra historia es la canción que siempre quise escuchar."'
     ];
     
-    // Seleccionar la frase según el ID (si existe) o una aleatoria
-    let frase;
-    if (id && id <= phrases.length) {
-        frase = phrases[id - 1];
-    } else {
-        // Si no hay ID o es inválido, tomar una frase aleatoria
-        frase = phrases[Math.floor(Math.random() * phrases.length)];
-    }
+    // Seleccionar frase aleatoria SIEMPRE para asegurar que funcione
+    const randomIndex = Math.floor(Math.random() * phrases.length);
+    const frase = phrases[randomIndex];
     
-    // Mostrar la frase en una alerta (más simple y seguro)
+    // Mostrar la frase (usando alert primero para probar)
     alert(frase);
     
-    // También puedes usar el mensaje flotante, pero la alerta es más confiable
-    // Si prefieres el mensaje flotante, descomenta el código de abajo y comenta el alert
-    /*
-    // Crear un mensaje flotante bonito
-    const msg = document.createElement('div');
-    msg.textContent = frase;
-    msg.style.position = 'fixed';
-    msg.style.top = '50%';
-    msg.style.left = '50%';
-    msg.style.transform = 'translate(-50%, -50%)';
-    msg.style.fontSize = '1.8rem';
-    msg.style.fontFamily = "'Dancing Script', cursive";
-    msg.style.color = '#ff4d6d';
-    msg.style.textShadow = '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,105,180,0.5)';
-    msg.style.zIndex = '10001';
-    msg.style.animation = 'fadeInOut 3s ease';
-    msg.style.textAlign = 'center';
-    msg.style.fontWeight = 'bold';
-    msg.style.background = 'rgba(255, 255, 255, 0.9)';
-    msg.style.padding = '30px 50px';
-    msg.style.borderRadius = '80px';
-    msg.style.backdropFilter = 'blur(5px)';
-    msg.style.border = '3px solid white';
-    msg.style.boxShadow = '0 20px 40px rgba(255, 105, 180, 0.4)';
-    msg.style.maxWidth = '80%';
-    document.body.appendChild(msg);
-    
-    setTimeout(() => msg.remove(), 3000);
-    */
+    // También puedes probar con console.log para ver si llega
+    console.log("Frase mostrada:", frase);
 }
 
 // Función sorpresa con confeti
@@ -124,7 +85,7 @@ function launchSurprise() {
         confetti.style.top = '-10px';
         confetti.style.width = '10px';
         confetti.style.height = '20px';
-        confetti.style.background = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`; // Tonos rosados
+        confetti.style.background = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`;
         confetti.style.borderRadius = '2px';
         confetti.style.zIndex = '9999';
         confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
@@ -152,7 +113,7 @@ function launchSurprise() {
     // Mostrar mensaje
     const messages = [
         '¡ELLA DIJO QUE SÍ! ❤️',
-        '2 DE FEBRERO 2025 ✨',
+        '2 DE FEBRERO ✨',
         'MI ENAMORADA 💕',
         'EL SÍ MÁS BONITO 🌹',
         'PARA SIEMPRE 💑',
@@ -185,27 +146,22 @@ function launchSurprise() {
     setTimeout(() => msg.remove(), 3000);
 }
 
-// Crear estilo para animaciones (si no existe)
-if (!document.getElementById('custom-animations')) {
-    const style = document.createElement('style');
-    style.id = 'custom-animations';
-    style.textContent = `
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
+// Crear estilo para animaciones
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fall {
+        to {
+            transform: translateY(100vh) rotate(360deg);
         }
-        
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-        }
-    `;
-    document.head.appendChild(style);
-}
+    }
+    
+    @keyframes fadeInOut {
+        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+        50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    }
+`;
+document.head.appendChild(style);
 
-// Inicializar contador al cargar la página
-document.addEventListener('DOMContentLoaded', function() {
-    updateCounter();
-});
+// Inicializar contador
+updateCounter();
