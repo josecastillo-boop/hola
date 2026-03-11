@@ -43,7 +43,7 @@ function flipElement(element) {
     element.classList.toggle('flipped');
 }
 
-// ===== FUNCIÓN PARA FRASES MOTIVADORAS (CON MISMO EFECTO QUE BOTÓN SORPRESA) =====
+// ===== FUNCIÓN PARA FRASES MOTIVADORAS (CON MISMO FORMATO QUE BOTÓN SORPRESA) =====
 function showPhrase(id) {
     // Array de frases hermosas
     const phrases = [
@@ -68,9 +68,11 @@ function showPhrase(id) {
     const randomIndex = Math.floor(Math.random() * phrases.length);
     const frase = phrases[randomIndex];
     
-    // Crear mensaje flotante con el MISMO ESTILO que el botón sorpresa
+    // Crear mensaje con el MISMO FORMATO que el botón sorpresa
     const msg = document.createElement('div');
     msg.textContent = frase;
+    
+    // Aplicar los mismos estilos que el botón sorpresa
     msg.style.position = 'fixed';
     msg.style.top = '50%';
     msg.style.left = '50%';
@@ -90,13 +92,17 @@ function showPhrase(id) {
     msg.style.border = '3px solid white';
     msg.style.boxShadow = '0 20px 40px rgba(255, 105, 180, 0.4)';
     msg.style.maxWidth = '80%';
+    
+    // Agregar al cuerpo de la página
     document.body.appendChild(msg);
     
-    // Eliminar el mensaje después de 3 segundos
-    setTimeout(() => msg.remove(), 3000);
+    // Eliminar después de 3 segundos
+    setTimeout(() => {
+        msg.remove();
+    }, 3000);
 }
 
-// ===== FUNCIÓN SORPRESA (CON MISMO ESTILO) =====
+// ===== FUNCIÓN SORPRESA (con confeti) =====
 function launchSurprise() {
     // Crear confeti
     for (let i = 0; i < 150; i++) {
@@ -106,7 +112,7 @@ function launchSurprise() {
         confetti.style.top = '-10px';
         confetti.style.width = '10px';
         confetti.style.height = '20px';
-        confetti.style.background = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`; // Tonos rosados
+        confetti.style.background = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`;
         confetti.style.borderRadius = '2px';
         confetti.style.zIndex = '9999';
         confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
@@ -131,10 +137,10 @@ function launchSurprise() {
         setTimeout(() => heart.remove(), 5000);
     }
     
-    // Mostrar mensaje
+    // Mostrar mensaje sorpresa
     const messages = [
         '¡ELLA DIJO QUE SÍ! ❤️',
-        '2 DE FEBRERO ✨',
+        '2 DE FEBRERO 2025 ✨',
         'MI ENAMORADA 💕',
         'EL SÍ MÁS BONITO 🌹',
         'PARA SIEMPRE 💑',
@@ -167,22 +173,27 @@ function launchSurprise() {
     setTimeout(() => msg.remove(), 3000);
 }
 
-// Crear estilo para animaciones
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fall {
-        to {
-            transform: translateY(100vh) rotate(360deg);
+// Crear estilo para animaciones (si no existe)
+if (!document.getElementById('custom-animations')) {
+    const style = document.createElement('style');
+    style.id = 'custom-animations';
+    style.textContent = `
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
         }
-    }
-    
-    @keyframes fadeInOut {
-        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-        50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-        100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-    }
-`;
-document.head.appendChild(style);
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+        }
+    `;
+    document.head.appendChild(style);
+}
 
 // Inicializar contador
-updateCounter();
+document.addEventListener('DOMContentLoaded', function() {
+    updateCounter();
+});
