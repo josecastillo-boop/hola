@@ -1,17 +1,11 @@
 // Contador de tiempo desde el 2 de febrero de 2025
 function updateCounter() {
+    // Fecha exacta: 2 de febrero de 2025 a las 00:00 horas
     const startDate = new Date('2025-02-02T00:00:00');
     const now = new Date();
     const diff = now - startDate;
     
-    if (diff < 0) {
-        document.getElementById('days').textContent = '0';
-        document.getElementById('hours').textContent = '0';
-        document.getElementById('minutes').textContent = '0';
-        document.getElementById('seconds').textContent = '0';
-        return;
-    }
-    
+    // Calcular días, horas, minutos, segundos
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -49,6 +43,7 @@ function flipElement(element) {
 
 // Función sorpresa con confeti
 function launchSurprise() {
+    // Crear confeti
     for (let i = 0; i < 150; i++) {
         const confetti = document.createElement('div');
         confetti.style.position = 'fixed';
@@ -56,15 +51,17 @@ function launchSurprise() {
         confetti.style.top = '-10px';
         confetti.style.width = '10px';
         confetti.style.height = '20px';
-        confetti.style.background = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`;
+        confetti.style.background = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`; // Tonos rosados
         confetti.style.borderRadius = '2px';
         confetti.style.zIndex = '9999';
         confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
         confetti.style.opacity = Math.random() * 0.8 + 0.2;
         document.body.appendChild(confetti);
+        
         setTimeout(() => confetti.remove(), 5000);
     }
     
+    // Crear corazones adicionales
     for (let i = 0; i < 30; i++) {
         const heart = document.createElement('div');
         heart.style.position = 'fixed';
@@ -75,12 +72,67 @@ function launchSurprise() {
         heart.style.animation = `fall ${Math.random() * 4 + 2}s linear`;
         heart.innerHTML = '❤️';
         document.body.appendChild(heart);
+        
         setTimeout(() => heart.remove(), 5000);
     }
     
+    // Mostrar mensaje
     const messages = [
         '¡ELLA DIJO QUE SÍ! ❤️',
         '2 DE FEBRERO 2025 ✨',
         'MI ENAMORADA 💕',
         'EL SÍ MÁS BONITO 🌹',
-        'PARA SIEMPRE
+        'PARA SIEMPRE 💑',
+        'GRACIAS POR DECIR QUE SÍ 🥰',
+        'TE AMO NATALY ❤️',
+        'MI NATALY CAMILA 💖'
+    ];
+    
+    const msg = document.createElement('div');
+    msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+    msg.style.position = 'fixed';
+    msg.style.top = '50%';
+    msg.style.left = '50%';
+    msg.style.transform = 'translate(-50%, -50%)';
+    msg.style.fontSize = '3rem';
+    msg.style.fontFamily = "'Dancing Script', cursive";
+    msg.style.color = '#ff4d6d';
+    msg.style.textShadow = '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,105,180,0.5)';
+    msg.style.zIndex = '10001';
+    msg.style.animation = 'fadeInOut 3s ease';
+    msg.style.textAlign = 'center';
+    msg.style.fontWeight = 'bold';
+    msg.style.background = 'rgba(255, 255, 255, 0.3)';
+    msg.style.padding = '20px 40px';
+    msg.style.borderRadius = '80px';
+    msg.style.backdropFilter = 'blur(5px)';
+    msg.style.border = '2px solid white';
+    document.body.appendChild(msg);
+    
+    setTimeout(() => msg.remove(), 3000);
+}
+
+// Crear estilo para animaciones (si no existe)
+if (!document.getElementById('custom-animations')) {
+    const style = document.createElement('style');
+    style.id = 'custom-animations';
+    style.textContent = `
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Inicializar contador al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    updateCounter();
+});
