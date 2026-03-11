@@ -1,11 +1,9 @@
 // Contador de tiempo desde el 2 de febrero de 2025
 function updateCounter() {
-    // Fecha exacta: 2 de febrero de 2025 a las 00:00 horas
     const startDate = new Date('2025-02-02T00:00:00');
     const now = new Date();
     const diff = now - startDate;
     
-    // Si la fecha es futura (antes del 2 feb 2025), mostrar 0
     if (diff < 0) {
         document.getElementById('days').textContent = '0';
         document.getElementById('hours').textContent = '0';
@@ -49,22 +47,8 @@ function flipElement(element) {
     element.classList.toggle('flipped');
 }
 
-// Función para abrir cartas (respaldo)
-function openLetter(id) {
-    const letters = [
-        'Nataly Camila, ese 2 de febrero de 2025 junté valor y te pedí que fueras mi enamorada. Cuando dijiste que SÍ, mi corazón explotó de felicidad. Gracias por hacerme el hombre más feliz del mundo.',
-        
-        '22 de julio, el día más especial porque naciste tú. Feliz cumpleaños, mi amor. Gracias por existir y por haberle dicho que sí a este enamorado que te ama con todo su corazón.',
-        
-        'José Alexander ❤️ Nataly Camila. Cada 2 de mes celebramos nuestro amor, pero yo te celebro a ti cada segundo desde aquel 2 de febrero de 2025 cuando me regalaste el SÍ más hermoso. Te amo hoy, mañana y siempre, mi enamorada.'
-    ];
-    
-    alert(letters[id - 1]);
-}
-
 // Función sorpresa con confeti
 function launchSurprise() {
-    // Crear confeti
     for (let i = 0; i < 150; i++) {
         const confetti = document.createElement('div');
         confetti.style.position = 'fixed';
@@ -72,4 +56,31 @@ function launchSurprise() {
         confetti.style.top = '-10px';
         confetti.style.width = '10px';
         confetti.style.height = '20px';
-       
+        confetti.style.background = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`;
+        confetti.style.borderRadius = '2px';
+        confetti.style.zIndex = '9999';
+        confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
+        confetti.style.opacity = Math.random() * 0.8 + 0.2;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+    }
+    
+    for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.style.position = 'fixed';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.top = '-10px';
+        heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+        heart.style.zIndex = '10000';
+        heart.style.animation = `fall ${Math.random() * 4 + 2}s linear`;
+        heart.innerHTML = '❤️';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+    
+    const messages = [
+        '¡ELLA DIJO QUE SÍ! ❤️',
+        '2 DE FEBRERO 2025 ✨',
+        'MI ENAMORADA 💕',
+        'EL SÍ MÁS BONITO 🌹',
+        'PARA SIEMPRE
