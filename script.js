@@ -45,11 +45,14 @@ document.querySelectorAll('.animate-on-scroll').forEach(el => {
 });
 
 // Función para abrir cartas
+// Función para abrir cartas
 function openLetter(id) {
     const letters = [
-        'Nataly Camila, desde ese 2 de febrero de 2025 supe que eras especial. Ese día, cuando decidimos ser enamorados, comenzó la historia más hermosa de mi vida.',
-        '22 de julio, el día que el mundo se volvió más bonito. Feliz cumpleaños, princesa. Gracias por existir y por decir que sí aquel 2 de febrero.',
-        'José Alexander ❤️ Nataly Camila. Cada 2 de mes celebramos nuestro amor, pero yo te celebro a ti cada segundo de mi vida desde el 2 de febrero de 2025.'
+        'Nataly Camila, ese 2 de febrero de 2025 junté valor y te pedí que fueras mi enamorada. Cuando dijiste que SÍ, mi corazón explotó de felicidad. Ese día comenzó la historia más hermosa de mi vida. Gracias por hacerme la persona más feliz del mundo.',
+        
+        '22 de julio, el día más especial porque naciste tú. Feliz cumpleaños, mi amor. Gracias por existir y por haberle dicho que sí a este enamorado que te ama con todo su corazón.',
+        
+        'José Alexander ❤️ Nataly Camila. Cada 2 de mes celebramos nuestro amor, pero yo te celebro a ti cada segundo desde aquel 2 de febrero de 2025 cuando me regalaste el SÍ más hermoso. Te amo hoy, mañana y siempre, mi enamorada.'
     ];
     
     alert(letters[id - 1]);
