@@ -50,8 +50,9 @@ function flipElement(element) {
     element.classList.toggle('flipped');
 }
 
-// ===== FUNCIÓN PARA FRASES MOTIVADORAS =====
+// ===== FUNCIÓN PARA FRASES MOTIVADORAS (CORREGIDA) =====
 function showPhrase(id) {
+    // Array de frases hermosas
     const phrases = [
         '🌸 "Contigo aprendí que el amor verdadero existe. Eres mi inspiración cada día."',
         '✨ "Tu sonrisa es la luz que ilumina mis días más oscuros."',
@@ -70,14 +71,21 @@ function showPhrase(id) {
         '🎵 "Nuestra historia es la canción que siempre quise escuchar."'
     ];
     
-    // Seleccionar una frase aleatoria si el ID es mayor que el array
+    // Seleccionar la frase según el ID (si existe) o una aleatoria
     let frase;
-    if (id <= phrases.length) {
+    if (id && id <= phrases.length) {
         frase = phrases[id - 1];
     } else {
+        // Si no hay ID o es inválido, tomar una frase aleatoria
         frase = phrases[Math.floor(Math.random() * phrases.length)];
     }
     
+    // Mostrar la frase en una alerta (más simple y seguro)
+    alert(frase);
+    
+    // También puedes usar el mensaje flotante, pero la alerta es más confiable
+    // Si prefieres el mensaje flotante, descomenta el código de abajo y comenta el alert
+    /*
     // Crear un mensaje flotante bonito
     const msg = document.createElement('div');
     msg.textContent = frase;
@@ -103,6 +111,7 @@ function showPhrase(id) {
     document.body.appendChild(msg);
     
     setTimeout(() => msg.remove(), 3000);
+    */
 }
 
 // Función sorpresa con confeti
