@@ -1,7 +1,6 @@
-// ===== CONTADOR DE TIEMPO - CORREGIDO =====
+// ===== CONTADOR DE TIEMPO =====
 function updateCounter() {
     // Fecha exacta: 2 de febrero de 2025 a las 00:00 horas
-    // SI YA PASÓ ESA FECHA, EL CONTADOR MOSTRARÁ LOS DÍAS REALES
     const startDate = new Date('2025-02-02T00:00:00');
     const now = new Date();
     const diff = now - startDate;
@@ -56,10 +55,4 @@ function showPhrase(id) {
     const phrases = [
         '🌸 "Contigo aprendí que el amor verdadero existe. Eres mi inspiración cada día."',
         '✨ "Tu sonrisa es la luz que ilumina mis días más oscuros."',
-        '💫 "A tu lado, cualquier problema parece pequeño. Eres mi paz."',
-        '🌟 "Gracias por creer en mí cuando ni yo mismo lo hago."',
-        '💖 "Eres mi lugar seguro, mi hogar, mi todo."',
-        '🌹 "Cada día a tu lado es un nuevo motivo para sonreír."',
-        '⭐ "No hay meta que no pueda alcanzar si tú estás a mi lado."',
-        '💕 "Tú me haces querer ser mejor persona cada día."',
-        '🌈 "Contigo, hasta los días grises
+        '💫 "A tu
