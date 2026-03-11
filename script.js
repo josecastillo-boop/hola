@@ -1,4 +1,4 @@
-// ===== CONTADOR DE TIEMPO - CORREGIDO =====
+// ===== CONTADOR DE TIEMPO =====
 function updateCounter() {
     // IMPORTANTE: CAMBIA ESTA FECHA POR LA REAL
     // Si fue el 2 de febrero de 2024, pon: new Date('2024-02-02T00:00:00')
@@ -43,7 +43,7 @@ function flipElement(element) {
     element.classList.toggle('flipped');
 }
 
-// ===== FUNCIÓN PARA FRASES MOTIVADORAS (AHORA SÍ FUNCIONA) =====
+// ===== FUNCIÓN PARA FRASES MOTIVADORAS (CON MISMO EFECTO QUE BOTÓN SORPRESA) =====
 function showPhrase(id) {
     // Array de frases hermosas
     const phrases = [
@@ -64,18 +64,39 @@ function showPhrase(id) {
         '🎵 "Nuestra historia es la canción que siempre quise escuchar."'
     ];
     
-    // Seleccionar frase aleatoria SIEMPRE para asegurar que funcione
+    // Seleccionar frase aleatoria
     const randomIndex = Math.floor(Math.random() * phrases.length);
     const frase = phrases[randomIndex];
     
-    // Mostrar la frase (usando alert primero para probar)
-    alert(frase);
+    // Crear mensaje flotante con el MISMO ESTILO que el botón sorpresa
+    const msg = document.createElement('div');
+    msg.textContent = frase;
+    msg.style.position = 'fixed';
+    msg.style.top = '50%';
+    msg.style.left = '50%';
+    msg.style.transform = 'translate(-50%, -50%)';
+    msg.style.fontSize = '2rem';
+    msg.style.fontFamily = "'Dancing Script', cursive";
+    msg.style.color = '#ff4d6d';
+    msg.style.textShadow = '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,105,180,0.5)';
+    msg.style.zIndex = '10001';
+    msg.style.animation = 'fadeInOut 3s ease';
+    msg.style.textAlign = 'center';
+    msg.style.fontWeight = 'bold';
+    msg.style.background = 'rgba(255, 255, 255, 0.9)';
+    msg.style.padding = '30px 50px';
+    msg.style.borderRadius = '80px';
+    msg.style.backdropFilter = 'blur(5px)';
+    msg.style.border = '3px solid white';
+    msg.style.boxShadow = '0 20px 40px rgba(255, 105, 180, 0.4)';
+    msg.style.maxWidth = '80%';
+    document.body.appendChild(msg);
     
-    // También puedes probar con console.log para ver si llega
-    console.log("Frase mostrada:", frase);
+    // Eliminar el mensaje después de 3 segundos
+    setTimeout(() => msg.remove(), 3000);
 }
 
-// Función sorpresa con confeti
+// ===== FUNCIÓN SORPRESA (CON MISMO ESTILO) =====
 function launchSurprise() {
     // Crear confeti
     for (let i = 0; i < 150; i++) {
@@ -85,7 +106,7 @@ function launchSurprise() {
         confetti.style.top = '-10px';
         confetti.style.width = '10px';
         confetti.style.height = '20px';
-        confetti.style.background = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`;
+        confetti.style.background = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`; // Tonos rosados
         confetti.style.borderRadius = '2px';
         confetti.style.zIndex = '9999';
         confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
